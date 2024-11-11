@@ -5,6 +5,7 @@ from app.config.settings import get_logger, log_response
 from app.database.migrate import migrate
 from app.database.session import engine
 from app.resources.authentication.auth_router import auth_bp
+from app.resources.book.book_router import book_bp
 from app.resources.user.user_router import user_bp
 from dynaconf import FlaskDynaconf
 from flask import Flask
@@ -37,5 +38,6 @@ def create_app(**config: str) -> Flask:
     # Registrar blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
+    app.register_blueprint(book_bp)
 
     return app
