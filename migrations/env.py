@@ -17,7 +17,6 @@ from app.database.session import Base
 
 
 # IMPORT MODELS:
-from app.models.todo import TodoItem
 
 target_metadata = Base.metadata
 
