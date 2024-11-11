@@ -18,7 +18,7 @@ user_model = user_ns.model('User', {
 
 api.add_namespace(user_ns)
 
-@user_ns.route('/create_user')
+@user_ns.route('/create_user', methods=['POST'])
 class RegisterResource(Resource):
     """Recurso para registro de usuário."""
 
@@ -28,7 +28,7 @@ class RegisterResource(Resource):
         data = request.get_json()
         return UserLogic.create_user(data)
 
-@user_ns.route('/')
+@user_ns.route('/', methods=['GET'])
 class UserListResource(Resource):
     """Recurso para listar todos os usuários (admin)."""
 
@@ -39,7 +39,7 @@ class UserListResource(Resource):
         users = UserLogic.get_all_users()
         return {"users": users}, 200
 
-@user_ns.route('/<int:user_id>')
+@user_ns.route('/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
 class UserResource(Resource):
     """Recurso para operações CRUD em um único usuário."""
 

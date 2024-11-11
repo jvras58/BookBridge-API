@@ -14,7 +14,7 @@ auth_model = auth_ns.model('User', {
 })
 
 
-@auth_ns.route('/login')
+@auth_ns.route('/login', methods=['POST'])
 class LoginResource(Resource):
     """Recurso para autenticação de usuário."""
 

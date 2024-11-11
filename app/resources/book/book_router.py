@@ -15,7 +15,7 @@ book_model = book_ns.model('Book', {
 
 api.add_namespace(book_ns)
 
-@book_ns.route('/create_book')
+@book_ns.route('/create_book', methods=['POST'])
 class RegisterBookResource(Resource):
     """Recurso para registro de livro."""
 
@@ -25,7 +25,7 @@ class RegisterBookResource(Resource):
         data = request.get_json()
         return BookLogic.create_book(data)
 
-@book_ns.route('/')
+@book_ns.route('/', methods=['GET'])
 class BookListResource(Resource):
     """Recurso para listar todos os livros."""
 
@@ -34,7 +34,7 @@ class BookListResource(Resource):
         books = BookLogic.get_all_books()
         return {"books": books}, 200
 
-@book_ns.route('/<int:book_id>')
+@book_ns.route('/<int:book_id>', methods=['GET', 'PUT', 'DELETE'])
 class BookResource(Resource):
     """Recurso para operações CRUD em um único livro."""
 
