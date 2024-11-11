@@ -1,14 +1,14 @@
 """Modulo base para configuração da aplicação."""
 
+from app.config.settings import get_logger, log_response
+from app.database.session import engine
+from app.database.migrate import migrate
 from dynaconf import FlaskDynaconf
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-
 from app.common.swagger import init_swagger
-from app.config.settings import get_logger, log_response
-from app.database.migrate import migrate
-from app.database.session import engine
-
+from app.resources.user_router import user_bp
 
 def create_app(**config: str) -> Flask:
     """Configuração do CORS e carregamento das extensões."""
@@ -17,6 +17,7 @@ def create_app(**config: str) -> Flask:
     FlaskDynaconf(app, settings_files=["settings.toml"])
     app.config.update(config)
 
+    JWTManager(app)
     CORS(app)
     migrate.init_app(app, engine, render_as_batch=True)
 
@@ -32,6 +33,6 @@ def create_app(**config: str) -> Flask:
     init_swagger(app)
 
     # Registrar blueprints
-    # app.register_blueprint(todo_bp)
+    app.register_blueprint(user_bp)
 
     return app

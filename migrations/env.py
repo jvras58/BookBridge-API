@@ -17,6 +17,7 @@ from app.database.session import Base
 
 
 # IMPORT MODELS:
+from app.models.user import User
 
 target_metadata = Base.metadata
 
