@@ -1,4 +1,4 @@
-"""Configuração da aplicação."""
+"""Modulo base para configuração da aplicação."""
 
 from dynaconf import FlaskDynaconf
 from flask import Flask
@@ -8,7 +8,6 @@ from app.common.swagger import init_swagger
 from app.config.settings import get_logger, log_response
 from app.database.migrate import migrate
 from app.database.session import engine
-from app.resources.todo_router import todo_bp
 
 
 def create_app(**config: str) -> Flask:
@@ -33,6 +32,6 @@ def create_app(**config: str) -> Flask:
     init_swagger(app)
 
     # Registrar blueprints
-    app.register_blueprint(todo_bp)
+    # app.register_blueprint(todo_bp)
 
     return app
