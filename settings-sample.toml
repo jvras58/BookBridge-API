@@ -1,0 +1,28 @@
+[default]
+APP_NAME = "project_default"
+DEBUG = false
+ENVIRONMENT = "production"
+LOG_LEVEL = "WARNING"
+CORS_HEADERS = "Content-Type"
+SECRET_KEY = "testeAbc"
+
+[development]
+APP_NAME = "project_development"
+DEBUG = true
+ENVIRONMENT = "development"
+LOG_LEVEL = "DEBUG"
+SECRET_KEY = "testeAbc"
+
+[production]
+APP_NAME = "project_production"
+DEBUG = false
+ENVIRONMENT = "production"
+LOG_LEVEL = "ERROR"
+SECRET_KEY = "testeAbc"
+
+[testing]
+APP_NAME = "project_development"
+DEBUG = true
+ENVIRONMENT = "development"
+LOG_LEVEL = "DEBUG"
+SECRET_KEY = "testeAbc"
