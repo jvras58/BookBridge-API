@@ -2,18 +2,16 @@
 
 from datetime import timedelta
 
-from flask import jsonify
-from flask_jwt_extended import create_access_token
-
 from app.database.session import get_session
 from app.models.user import User
+from flask_jwt_extended import create_access_token
 
 
 class UserLogic:
     """Classe com operações de manipulação de usuários."""
 
     @staticmethod
-    def register_user(data):
+    def register_user(data: dict) -> tuple:
         """Registra um novo usuário."""
         username = data.get("username")
         password = data.get("password")
@@ -27,7 +25,7 @@ class UserLogic:
             return {"message": "Usuário criado com sucesso"}, 201
 
     @staticmethod
-    def authenticate_user(data):
+    def authenticate_user(data: dict) -> tuple:
         """Autentica um usuário e retorna um token JWT."""
         username = data.get("username")
         password = data.get("password")

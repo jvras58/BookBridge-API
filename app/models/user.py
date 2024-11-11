@@ -3,7 +3,8 @@
 from app.database.session import Base
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 class User(Base):
     """Modelo de usuarios."""
@@ -13,8 +14,10 @@ class User(Base):
     username: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String, nullable=False)
 
-    def set_password(self, password):
+    def set_password(self, password: str) -> None:
+        """Define a senha do usuário."""
         self.password_hash = generate_password_hash(password)
 
-    def check_password(self, password):
+    def check_password(self, password: str) -> bool:
+        """Verifica se a senha está correta."""
         return check_password_hash(self.password_hash, password)

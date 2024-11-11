@@ -1,5 +1,7 @@
 """Módulo para gerenciar a sessão do banco de dados."""
 
+from contextlib import contextmanager
+
 from app.config.settings import get_settings
 from sqlalchemy import create_engine
 from sqlalchemy.orm import (
@@ -7,7 +9,7 @@ from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
 )
-from contextlib import contextmanager
+
 
 class Base(DeclarativeBase):
     """Classe base para os modelos do banco de dados."""
