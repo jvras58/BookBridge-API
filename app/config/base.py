@@ -4,6 +4,7 @@ from app.common.swagger import init_swagger
 from app.config.settings import get_logger, log_response
 from app.database.migrate import migrate
 from app.database.session import engine
+from app.resources.authentication.auth_router import auth_bp
 from app.resources.user.user_router import user_bp
 from dynaconf import FlaskDynaconf
 from flask import Flask
@@ -34,6 +35,7 @@ def create_app(**config: str) -> Flask:
     init_swagger(app)
 
     # Registrar blueprints
+    app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
 
     return app
