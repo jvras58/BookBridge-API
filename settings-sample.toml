@@ -1,28 +1,39 @@
 [default]
+DB_URL = "sqlite:///bookbridge.db"
+LOG_LEVEL = "DEBUG"
+ENVIRONMENT = "default"
+FLASK_ENV = "default"
 APP_NAME = "project_default"
 DEBUG = false
-ENVIRONMENT = "production"
-LOG_LEVEL = "WARNING"
 CORS_HEADERS = "Content-Type"
 SECRET_KEY = "testeAbc"
 
 [development]
-APP_NAME = "project_development"
-DEBUG = true
-ENVIRONMENT = "development"
+DB_URL = "sqlite:///bookbridge.db"
 LOG_LEVEL = "DEBUG"
+ENVIRONMENT = "development"
+FLASK_ENV = "development"
+APP_NAME = "project_default"
+DEBUG = true
+CORS_HEADERS = "Content-Type"
 SECRET_KEY = "testeAbc"
 
 [production]
+DB_URL = "sqlite:///bookbridge.db"
+LOG_LEVEL = "DEBUG"
+ENVIRONMENT = "production"
+FLASK_ENV = "production"
 APP_NAME = "project_production"
 DEBUG = false
-ENVIRONMENT = "production"
-LOG_LEVEL = "ERROR"
+CORS_HEADERS = "Content-Type"
 SECRET_KEY = "testeAbc"
 
 [testing]
-APP_NAME = "project_development"
-DEBUG = true
-ENVIRONMENT = "development"
+DB_URL="sqlite:///:memory:"
 LOG_LEVEL = "DEBUG"
+ENVIRONMENT = "testing"
+FLASK_ENV = "testing"
+APP_NAME = "testing"
+DEBUG = true
+CORS_HEADERS = "Content-Type"
 SECRET_KEY = "testeAbc"
