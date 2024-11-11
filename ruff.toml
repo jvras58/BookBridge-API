@@ -30,6 +30,7 @@ exclude = [
     "site-packages",
     "venv",
     "migrations",
+    "tests",
 ]
 
 # Same as Black.
