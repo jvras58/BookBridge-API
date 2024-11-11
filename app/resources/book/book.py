@@ -2,6 +2,7 @@
 
 from app.database.session import get_session
 from app.models.book import Book
+from flask_jwt_extended import get_jwt_identity
 
 
 class BookLogic:
@@ -12,8 +13,9 @@ class BookLogic:
         """Registra um novo livro."""
         title = data.get("title")
         author = data.get("author")
+        created_by = get_jwt_identity()
         with get_session() as session:
-            book = Book(title=title, author=author)
+            book = Book(title=title, author=author, created_by=created_by)
             session.add(book)
             session.commit()
             return {"message": "Livro criado com sucesso"}, 201
@@ -39,6 +41,11 @@ class BookLogic:
             book = session.query(Book).get(book_id)
             if not book:
                 return {"message": "Livro não encontrado"}, 404
+
+            current_user_id = get_jwt_identity()
+            if book.created_by != current_user_id:
+                return {"message": "Você não tem permissão para atualizar este livro"}, 403
+
             book.title = data.get("title")
             book.author = data.get("author")
             session.commit()
@@ -51,6 +58,11 @@ class BookLogic:
             book = session.query(Book).get(book_id)
             if not book:
                 return {"message": "Livro não encontrado"}, 404
+
+            current_user_id = get_jwt_identity()
+            if book.created_by != current_user_id:
+                return {"message": "Você não tem permissão para excluir este livro"}, 403
+
             session.delete(book)
             session.commit()
             return {"message": "Livro excluído com sucesso"}, 200

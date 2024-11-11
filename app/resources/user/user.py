@@ -48,8 +48,11 @@ class UserLogic:
             return {"message": "Usuário atualizado com sucesso"}, 200
 
     @staticmethod
-    def delete_user(user_id: int) -> dict:
-        """Exclui um usuário específico."""
+    def delete_user(user_id: int, current_user_id: int) -> dict:
+        """Exclui um usuário se for o dono do ID."""
+        if user_id != current_user_id:
+            return {"message": "Você não tem permissão para excluir este usuário"}, 403
+
         with get_session() as session:
             user = session.query(User).get(user_id)
             if not user:
