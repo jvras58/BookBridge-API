@@ -35,14 +35,16 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 │ │ │  ├─🐍 settings.py            -> Módulo de configurações do sistema
 │ │ │    ...
 │ │ ├─📁 database      ->  [configurações para o banco de dados]
+│ │ │  ├─🐍 migrate.py              -> Módulo Inicialização da extensões flask migrate
 │ │ │  ├─🐍 session.py              -> Módulo para gerenciar a sessão do banco de dados
 │ │ │    ...
 │ │ ├─📁 models        ->  [Modelos para o banco de dados]
 │ │ │  ├─🐍 user.py              -> Módulo para modelo User
 │ │ │    ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
-│ │    ├─🐍 user.py              -> contêm a lógica de manipulação de usuarios
-│ │    ├─🐍 user_router.py       -> contêm a lógica das rotas que define o Blueprint
+│ │ │  ├─📁 user        ->  [Logicas de router e controllers referentes a usuarios]
+│ │ │     ├─🐍 user.py              -> contêm a lógica de manipulação de usuarios
+│ │ │     ├─🐍 user_router.py       -> contêm a lógica das rotas que define o Blueprint
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente
