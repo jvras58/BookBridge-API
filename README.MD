@@ -28,6 +28,7 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 │ │ ├─🐍 startup.py              -> Entrypoint
 │ │ ├─📁 commons        ->  [Funções Auxiliares]
 │ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
+│ │ │  ├─🐍 swagger.py             -> Arquivos de configuração e Documentação do Swagger
 │ │ │    ...
 │ │ ├─📁 config        ->  [configurações para aplicação]
 │ │ │  ├─🐍 base.py              -> Arquivos de Inicialização para aplicação
@@ -37,11 +38,11 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 │ │ │  ├─🐍 session.py              -> Módulo para gerenciar a sessão do banco de dados
 │ │ │    ...
 │ │ ├─📁 models        ->  [Modelos para o banco de dados]
-│ │ │  ├─🐍 todo.py              -> Módulo para modelo Todo
+│ │ │  ├─🐍 user.py              -> Módulo para modelo User
 │ │ │    ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
-│ │    ├─🐍 todo.py              -> contêm a lógica de manipulação dos itens TODO
-│ │    ├─🐍 todo_router.py       -> contêm a lógica das rotas que define o Blueprint
+│ │    ├─🐍 user.py              -> contêm a lógica de manipulação de usuarios
+│ │    ├─🐍 user_router.py       -> contêm a lógica das rotas que define o Blueprint
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente

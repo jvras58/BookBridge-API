@@ -4,11 +4,12 @@ import logging
 from functools import lru_cache
 from logging import Logger
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from rich.logging import RichHandler
-from rich.console import Console
-from rich.table import Table
 from flask import request
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from rich.console import Console
+from rich.logging import RichHandler
+from rich.table import Table
+
 
 class Settings(BaseSettings):
     """Classe que representa as configurações setadas no .env da aplicação."""
@@ -44,7 +45,7 @@ def get_logger(
     return build_logger(log_level, environment)
 
 
-def log_response(response):
+def log_response(response: str) -> object:
     """Middleware para logar as respostas HTTP."""
     console = Console()
     table = Table(show_header=True, header_style="bold magenta")
