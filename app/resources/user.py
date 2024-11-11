@@ -1,9 +1,13 @@
 """Contém a lógica das rotas para manipulação de User."""
 
-from flask_jwt_extended import create_access_token
-from app.models.user import User
-from app.database.session import get_session
 from datetime import timedelta
+
+from flask import jsonify
+from flask_jwt_extended import create_access_token
+
+from app.database.session import get_session
+from app.models.user import User
+
 
 class UserLogic:
     """Classe com operações de manipulação de usuários."""
