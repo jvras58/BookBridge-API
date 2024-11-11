@@ -4,6 +4,7 @@ import logging
 from functools import lru_cache
 from logging import Logger
 
+import toml
 from flask import request
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from rich.console import Console
@@ -12,17 +13,26 @@ from rich.table import Table
 
 
 class Settings(BaseSettings):
-    """Classe que representa as configurações setadas no .env da aplicação."""
+    """Classe que representa as configurações setadas no settings.toml da aplicação."""
 
     model_config = SettingsConfigDict(
-        env_file='.env',
-        env_file_encode='utf-8',
-        secrets_dir='.secrets',
+        toml_file='settings.toml',
     )
 
     DB_URL: str
     LOG_LEVEL: str = 'DEBUG'
     ENVIRONMENT: str = 'development'
+    FLASK_ENV: str
+    APP_NAME: str
+    DEBUG: bool
+    CORS_HEADERS: str
+    SECRET_KEY: str
+
+    @classmethod
+    def from_toml(cls, env: str) -> 'Settings':
+        """Carrega as configurações do arquivo settings.toml com base no ambiente."""
+        config = toml.load(cls.model_config['toml_file'])
+        return cls(**config[env])
 
 
 def build_logger(log_level: str, environment: str) -> Logger:
@@ -63,5 +73,7 @@ def log_response(response: str) -> object:
 
 @lru_cache
 def get_settings() -> Settings:
-    """Retorna as configurações setadas no .env."""
-    return Settings()
+    """Retorna as configurações setadas no settings.toml com base no ambiente."""
+    import os
+    env = os.getenv('FLASK_ENV', 'default')
+    return Settings.from_toml(env)

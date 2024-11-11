@@ -77,3 +77,7 @@ test:
 	@echo "Iniciando os Testes:"
 	export PYTHONPATH=/workspace export FLASK_APP=app/startup.py && FLASK_ENV=testing && pytest
 	
+
+test-users:
+	@echo "Iniciando os Testes de Usuários:"
+	export PYTHONPATH=/workspace export FLASK_APP=app/startup.py && FLASK_ENV=testing && pytest tests/test_routes.py
