@@ -21,3 +21,10 @@ class User(Base):
     def check_password(self, password: str) -> bool:
         """Verifica se a senha está correta."""
         return check_password_hash(self.password_hash, password)
+
+    def to_dict(self) -> dict:
+        """Converte o objeto User em um dicionário."""
+        return {
+            "id": self.id,
+            "username": self.username,
+        }

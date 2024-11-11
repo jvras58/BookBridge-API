@@ -4,7 +4,7 @@ from app.common.swagger import init_swagger
 from app.config.settings import get_logger, log_response
 from app.database.migrate import migrate
 from app.database.session import engine
-from app.resources.user_router import user_bp
+from app.resources.user.user_router import user_bp
 from dynaconf import FlaskDynaconf
 from flask import Flask
 from flask_cors import CORS
