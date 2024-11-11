@@ -45,7 +45,7 @@ class UserLogic:
             user.username = data.get("username")
             user.set_password(data.get("password"))
             session.commit()
-            return {"message": "Usuário atualizado com sucesso"}
+            return {"message": "Usuário atualizado com sucesso"}, 200
 
     @staticmethod
     def delete_user(user_id: int) -> dict:
