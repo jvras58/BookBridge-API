@@ -50,7 +50,7 @@ class AddBookToClubResource(Resource):
         data = request.get_json()
         book_id = data.get("book_id")
         return ClubLogic.add_book_to_club(club_id, book_id)
-    
+
 @club_ns.route('/<int:club_id>/user_book', methods=['POST'])
 class AddUserBookToClubResource(Resource):
     """Recurso para adicionar um livro lido por um usuário a um clube."""

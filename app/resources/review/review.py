@@ -2,9 +2,8 @@
 
 from app.database.session import get_session
 from app.models.review import Review
-from flask_jwt_extended import get_jwt_identity
-
 from app.models.userbook import UserBook
+from flask_jwt_extended import get_jwt_identity
 
 
 class ReviewLogic:

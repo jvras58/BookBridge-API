@@ -1,5 +1,5 @@
 ## 📖 Sobre o Projeto
-Este projeto é uma API desenvolvida com flask, focada no estudo e implementação dos princípios da RestFul. A documentação detalhada do que é a API pode ser encontrada [aqui](docs/docs.md).
+Este projeto é uma API desenvolvida com flask, focada na resolução de desafio para back-end e implementação dos princípios da RestFul.
 
 
 ## 🚀 Tecnologias e Ferramentas
@@ -13,7 +13,6 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 | **Runtime**           |
 | Python    | v3.12.x   |
 | **Devtime**           |
-| Ruff                          | v0.4.x    |
 | Docker Engine                 | vx.x.x    |
 
 ### Organização do projeto
@@ -39,12 +38,12 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 │ │ │  ├─🐍 session.py              -> Módulo para gerenciar a sessão do banco de dados
 │ │ │    ...
 │ │ ├─📁 models        ->  [Modelos para o banco de dados]
-│ │ │  ├─🐍 user.py              -> Módulo para modelo User
+│ │ │  ├─🐍 xxx.py              -> Módulo para modelos xxxx
 │ │ │    ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
-│ │ │  ├─📁 user        ->  [Logicas de router e controllers referentes a usuarios]
-│ │ │     ├─🐍 user.py              -> contêm a lógica de manipulação de usuarios
-│ │ │     ├─🐍 user_router.py       -> contêm a lógica das rotas que define o Blueprint
+│ │ │  ├─📁 xxxx        ->  [Logicas de router e controllers xxxxx]
+│ │ │     ├─🐍 xxxxx.py              -> contêm a lógica de manipulação de xxxxx
+│ │ │     ├─🐍 xxxxx_router.py       -> contêm a lógica das rotas que define o Blueprint
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente

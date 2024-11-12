@@ -1,8 +1,9 @@
+"""Módulo de roteamento de estatisticas."""
 from app.database.session import get_session
 from app.models.club_livro import ClubBook
+from app.models.review import Review
 from sqlalchemy.sql import func
 
-from app.models.review import Review
 
 class StatisticsLogic:
     """Classe com operações de cálculo de estatísticas."""

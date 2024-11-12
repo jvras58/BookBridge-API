@@ -37,7 +37,7 @@ class ClubLogic:
             session.add(club_book)
             session.commit()
             return {"message": "Livro adicionado ao clube com sucesso"}, 200
-        
+
     @staticmethod
     def add_user_book(club_id: int, book_id: int, user_id: int) -> dict:
         """Adiciona um livro lido por um usuário em um clube."""
