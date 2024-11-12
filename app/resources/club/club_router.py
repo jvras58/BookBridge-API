@@ -18,6 +18,12 @@ add_book_club_model = club_ns.model('AddBook', {
     'book_id': fields.Integer(required=True, description='ID do livro'),
 })
 
+add_user_book_model = club_ns.model('AddUserBook', {
+    'club_id': fields.Integer(required=True, description='ID do clube'),
+    'book_id': fields.Integer(required=True, description='ID do livro'),
+    'user_id': fields.Integer(required=True, description='ID do usuário'),
+})
+
 api.add_namespace(club_ns)
 
 @club_ns.route('/create_club', methods=['POST'])
@@ -44,6 +50,20 @@ class AddBookToClubResource(Resource):
         data = request.get_json()
         book_id = data.get("book_id")
         return ClubLogic.add_book_to_club(club_id, book_id)
+    
+@club_ns.route('/<int:club_id>/user_book', methods=['POST'])
+class AddUserBookToClubResource(Resource):
+    """Recurso para adicionar um livro lido por um usuário a um clube."""
+
+    @club_ns.doc(security='Bearer Auth')
+    @jwt_required()
+    @club_ns.expect(add_user_book_model)
+    def post(self, club_id: int) -> dict:
+        """Adiciona um livro lido por um usuário a um clube."""
+        data = request.get_json()
+        book_id = data.get("book_id")
+        user_id = data.get("user_id")
+        return ClubLogic.add_user_book(club_id, book_id, user_id)
 
 @club_ns.route('/<int:club_id>/books', methods=['GET'])
 class ClubBooksResource(Resource):

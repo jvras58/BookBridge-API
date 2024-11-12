@@ -4,6 +4,8 @@ from app.database.session import get_session
 from app.models.review import Review
 from flask_jwt_extended import get_jwt_identity
 
+from app.models.userbook import UserBook
+
 
 class ReviewLogic:
     """Classe com operações de manipulação de avaliações."""
@@ -16,6 +18,9 @@ class ReviewLogic:
         comment = data.get("comment")
         user_id = get_jwt_identity()
         with get_session() as session:
+            user_book = session.query(UserBook).filter_by(user_id=user_id, book_id=book_id).first()
+            if not user_book:
+                return {"message": "Usuário não leu este livro em nenhum clube"}, 403
             review = Review(book_id=book_id, user_id=user_id, rating=rating, comment=comment)
             session.add(review)
             session.commit()
