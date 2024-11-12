@@ -22,6 +22,7 @@ from app.models.book import Book
 from app.models.club import Club
 from app.models.club_livro import ClubBook
 from app.models.review import Review
+from app.models.userbook import UserBook
 
 target_metadata = Base.metadata
 

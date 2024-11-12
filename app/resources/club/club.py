@@ -4,6 +4,8 @@ from app.database.session import get_session
 from app.models.book import Book
 from app.models.club import Club
 from app.models.club_livro import ClubBook
+from app.models.user import User
+from app.models.userbook import UserBook
 
 
 class ClubLogic:
@@ -29,10 +31,27 @@ class ClubLogic:
                 return {"message": "Clube não encontrado"}, 404
             if not session.query(Book).get(book_id):
                 return {"message": "Livro não encontrado"}, 404
+            if session.query(ClubBook).filter_by(club_id=club_id, book_id=book_id).first():
+                return {"message": "Livro já adicionado ao clube"}, 409
             club_book = ClubBook(club_id=club_id, book_id=book_id)
             session.add(club_book)
             session.commit()
             return {"message": "Livro adicionado ao clube com sucesso"}, 200
+        
+    @staticmethod
+    def add_user_book(club_id: int, book_id: int, user_id: int) -> dict:
+        """Adiciona um livro lido por um usuário em um clube."""
+        with get_session() as session:
+            if not session.query(Club).get(club_id):
+                return {"message": "Clube não encontrado"}, 404
+            if not session.query(Book).get(book_id):
+                return {"message": "Livro não encontrado"}, 404
+            if not session.query(User).get(user_id):
+                return {"message": "Usuário não encontrado"}, 404
+            user_book = UserBook(club_id=club_id, book_id=book_id, user_id=user_id)
+            session.add(user_book)
+            session.commit()
+            return {"message": "Livro lido pelo usuário adicionado ao clube com sucesso"}, 200
 
     @staticmethod
     def get_books_of_club(club_id: int) -> list:
